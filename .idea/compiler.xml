@@ -2,6 +2,7 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
@@ -39,7 +40,7 @@
       <module name="gmall-ums" target="1.8" />
       <module name="gmall-wms" target="1.8" />
       <module name="gmall-wms-interface" target="1.8" />
-      <module name="gmall-zmm-master" target="1.8" />
+      <module name="gmall-zmm" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
