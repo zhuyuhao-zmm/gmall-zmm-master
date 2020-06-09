@@ -10,24 +10,23 @@ import java.util.List;
 @Data
 public class SkuVo extends SkuEntity {
 
-    //图片列表
+    // sku图片列表
     private List<String> images;
 
-    //商品销售属性
+    // 接收sku的销售属性及值
     private List<SkuAttrValueEntity> saleAttrs;
 
-    // 积分活动
+    // sku的积分优惠信息
     private BigDecimal growBounds;
     private BigDecimal buyBounds;
-
     private List<Integer> work;
 
-    //打折
+    // sku的打折信息
     private Integer fullCount;
     private BigDecimal discount;
     private Integer ladderAddOther;
 
-    // 满减活动
+    // sku的满减信息
     private BigDecimal fullPrice;
     private BigDecimal reducePrice;
     private Integer fullAddOther;

@@ -5,12 +5,14 @@ import com.atguigu.gmall.common.bean.PageResultVo;
 import com.atguigu.gmall.common.bean.PageParamVo;
 import com.atguigu.gmall.wms.entity.PurchaseEntity;
 
+import java.util.Map;
+
 /**
  * 采购信息
  *
  * @author fengge
  * @email fengge@atguigu.com
- * @date 2020-05-21 23:11:31
+ * @date 2020-05-19 10:42:54
  */
 public interface PurchaseService extends IService<PurchaseEntity> {
 

@@ -11,7 +11,7 @@
     <artifactId>gmall-wms</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>gmall-wms</name>
-    <description>库存系统</description>
+    <description>谷粒商城仓储系统</description>
 
     <properties>
         <java.version>1.8</java.version>
@@ -36,7 +36,6 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>

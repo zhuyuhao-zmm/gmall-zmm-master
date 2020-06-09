@@ -7,11 +7,18 @@ import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 
-@Data
 public class SpuAttrValueVo extends SpuAttrValueEntity {
+
+    /**
+     * 页面传递的json属性名：valueSelected
+     * 对象属性名：attrValue
+     * @param valueSelected
+     */
     public void setValueSelected(List<String> valueSelected){
+
         if (!CollectionUtils.isEmpty(valueSelected)){
-            setAttrValue(StringUtils.join(valueSelected, ","));
+
+            this.setAttrValue(StringUtils.join(valueSelected, ","));
         }
     }
 }

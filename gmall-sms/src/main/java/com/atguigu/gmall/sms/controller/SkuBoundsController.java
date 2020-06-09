@@ -2,6 +2,7 @@ package com.atguigu.gmall.sms.controller;
 
 import java.util.List;
 
+import com.atguigu.gmall.sms.api.vo.ItemSaleVo;
 import com.atguigu.gmall.sms.api.vo.SkuSaleVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -24,7 +25,7 @@ import com.atguigu.gmall.common.bean.PageParamVo;
  *
  * @author fengge
  * @email fengge@atguigu.com
- * @date 2020-05-18 22:43:51
+ * @date 2020-05-16 15:02:29
  */
 @Api(tags = "商品spu积分设置 管理")
 @RestController
@@ -34,9 +35,16 @@ public class SkuBoundsController {
     @Autowired
     private SkuBoundsService skuBoundsService;
 
-    @PostMapping("sku/Sales")
+    @GetMapping("sku/{skuId}")
+    public ResponseVo<List<ItemSaleVo>> querySaleVosBySkuId(@PathVariable("skuId")Long skuId){
+        List<ItemSaleVo> itemSaleVos = this.skuBoundsService.querySaleVosBySkuId(skuId);
+        return ResponseVo.ok(itemSaleVos);
+    }
+
+    @PostMapping("sku/sales")
     public ResponseVo<Object> saveSkuSales(@RequestBody SkuSaleVo skuSaleVo){
-        skuBoundsService.saveSkuSales(skuSaleVo);
+        this.skuBoundsService.saveSkuSales(skuSaleVo);
+
         return ResponseVo.ok("保存成功");
     }
 

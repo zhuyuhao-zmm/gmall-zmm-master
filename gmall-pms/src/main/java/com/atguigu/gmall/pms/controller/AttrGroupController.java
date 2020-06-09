@@ -2,8 +2,8 @@ package com.atguigu.gmall.pms.controller;
 
 import java.util.List;
 
-import com.atguigu.gmall.pms.entity.CategoryEntity;
 import com.atguigu.gmall.pms.vo.GroupVo;
+import com.atguigu.gmall.pms.vo.ItemGroupVo;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -27,7 +27,7 @@ import com.atguigu.gmall.common.bean.PageParamVo;
  *
  * @author fengge
  * @email fengge@atguigu.com
- * @date 2020-05-18 22:04:16
+ * @date 2020-05-16 14:35:19
  */
 @Api(tags = "属性分组 管理")
 @RestController
@@ -36,6 +36,30 @@ public class AttrGroupController {
 
     @Autowired
     private AttrGroupService attrGroupService;
+
+    @GetMapping("item/group")
+    public ResponseVo<List<ItemGroupVo>> queryItemGroupVoByCidAndSpuIdAndSkuId(
+            @RequestParam("cid")Long cid,
+            @RequestParam("spuId")Long spuId,
+            @RequestParam("skuId")Long skuId
+    ){
+        List<ItemGroupVo> itemGroupVos = this.attrGroupService.queryItemGroupVoByCidAndSpuIdAndSkuId(cid, spuId, skuId);
+        return ResponseVo.ok(itemGroupVos);
+    }
+
+    @GetMapping("withattrs/{cid}")
+    public ResponseVo<List<GroupVo>> queryGroupsWithAttrsByCid(@PathVariable("cid")Long cid){
+
+        List<GroupVo> groupVos = this.attrGroupService.queryGroupsWithAttrsByCid(cid);
+        return ResponseVo.ok(groupVos);
+    }
+
+    @GetMapping("category/{cid}")
+    public ResponseVo<List<AttrGroupEntity>> queryGroupsByCid(@PathVariable("cid")Long cid){
+        List<AttrGroupEntity> attrGroupEntities = this.attrGroupService.list(new QueryWrapper<AttrGroupEntity>().eq("category_id", cid));
+
+        return ResponseVo.ok(attrGroupEntities);
+    }
 
     /**
      * 列表
@@ -48,21 +72,6 @@ public class AttrGroupController {
         return ResponseVo.ok(pageResultVo);
     }
 
-    //查询三级分类分组
-    @GetMapping("category/{cid}")
-    public ResponseVo<List<AttrGroupEntity>> queryGroupsByCid(@PathVariable("cid")Long cid){
-        List<AttrGroupEntity> groups = attrGroupService
-                .list(new QueryWrapper<AttrGroupEntity>()
-                        .eq("category_id", cid));
-        return ResponseVo.ok(groups);
-    }
-
-    //查询分类下组及规格参数
-    @GetMapping("withattrs/{cid}")
-    public ResponseVo<List<GroupVo>> queryattrsByCid(@PathVariable("cid")Long cid){
-        List<GroupVo> groupVos = attrGroupService.queryattrsByCid(cid);
-        return ResponseVo.ok(groupVos);
-    }
 
     /**
      * 信息

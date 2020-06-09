@@ -30,13 +30,11 @@ public class SpuAttrValueServiceImpl extends ServiceImpl<SpuAttrValueMapper, Spu
     }
 
     @Autowired
-    private SpuAttrValueMapper attrValueMapper;
-
+    private SpuAttrValueMapper spuAttrValueMapper;
 
     @Override
-    public List<SpuAttrValueEntity> querySpuAttrValueBySpuId(Long spuId) {
-        List<SpuAttrValueEntity> attrValueEntities = attrValueMapper.querySpuAttrValueBySpuId(spuId);
-        return attrValueEntities;
+    public List<SpuAttrValueEntity> querySpuAttrValuesBySpuId(Long spuId) {
+        return this.spuAttrValueMapper.querySpuAttrValuesBySpuId(spuId);
     }
 
 }

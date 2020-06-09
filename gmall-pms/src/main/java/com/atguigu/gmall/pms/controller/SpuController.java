@@ -1,5 +1,6 @@
 package com.atguigu.gmall.pms.controller;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 
 import com.atguigu.gmall.pms.vo.SpuVo;
@@ -25,7 +26,7 @@ import com.atguigu.gmall.common.bean.PageParamVo;
  *
  * @author fengge
  * @email fengge@atguigu.com
- * @date 2020-05-18 22:04:16
+ * @date 2020-05-16 14:35:19
  */
 @Api(tags = "spu信息 管理")
 @RestController
@@ -36,11 +37,21 @@ public class SpuController {
     private SpuService spuService;
 
     @GetMapping("category/{categoryId}")
-    public ResponseVo<PageResultVo> querySpuPageByCid(@PathVariable("categoryId")Long cid
-            , PageParamVo pageParamVo){
-        PageResultVo pageResultVo = spuService.querySpuPageByCid(cid, pageParamVo);
-        return ResponseVo.ok(pageResultVo);
+    public ResponseVo<PageResultVo> querySpuPageByCid(@PathVariable("categoryId")Long categoryId, PageParamVo paramVo){
 
+        PageResultVo resultVo = this.spuService.querySpuPageByCid(categoryId, paramVo);
+        return ResponseVo.ok(resultVo);
+    }
+
+    /**
+     * 列表
+     */
+    @PostMapping("page")
+    @ApiOperation("分页查询feign")
+    public ResponseVo<List<SpuEntity>> querySpuPage(@RequestBody PageParamVo paramVo){
+        PageResultVo pageResultVo = spuService.queryPage(paramVo);
+
+        return ResponseVo.ok((List<SpuEntity>)pageResultVo.getList());
     }
 
     /**
@@ -71,7 +82,7 @@ public class SpuController {
      */
     @PostMapping
     @ApiOperation("保存")
-    public ResponseVo<Object> save(@RequestBody SpuVo spuVo){
+    public ResponseVo<Object> save(@RequestBody SpuVo spuVo) throws FileNotFoundException {
 		spuService.bigSave(spuVo);
 
         return ResponseVo.ok();
@@ -95,15 +106,8 @@ public class SpuController {
     @ApiOperation("删除")
     public ResponseVo delete(@RequestBody List<Long> ids){
 		spuService.removeByIds(ids);
+
         return ResponseVo.ok();
-    }
-
-    @PostMapping("page")
-    @ApiOperation("分页查询feign")
-    public ResponseVo<List<SpuEntity>> querySpuPage(@RequestBody PageParamVo paramVo){
-        PageResultVo pageResultVo = spuService.queryPage(paramVo);
-
-        return ResponseVo.ok((List<SpuEntity>)pageResultVo.getList());
     }
 
 }

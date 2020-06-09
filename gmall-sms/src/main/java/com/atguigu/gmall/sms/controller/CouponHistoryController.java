@@ -24,7 +24,7 @@ import com.atguigu.gmall.common.bean.PageParamVo;
  *
  * @author fengge
  * @email fengge@atguigu.com
- * @date 2020-05-18 22:43:51
+ * @date 2020-05-16 15:02:29
  */
 @Api(tags = "优惠券领取历史记录 管理")
 @RestController

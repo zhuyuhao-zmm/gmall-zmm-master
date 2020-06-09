@@ -28,7 +28,7 @@ public class DataSourceConfig {
                                  @Value("${spring.datasource.url}")String url,
                                  @Value("${spring.datasource.username}")String username,
                                  @Value("${spring.datasource.password}")String password
-    ) {
+                                 ) {
         HikariDataSource hikariDataSource = new HikariDataSource();
         hikariDataSource.setDriverClassName(driverClassName);
         hikariDataSource.setJdbcUrl(url);

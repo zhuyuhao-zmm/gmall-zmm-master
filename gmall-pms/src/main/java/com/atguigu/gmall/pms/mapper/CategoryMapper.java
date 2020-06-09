@@ -8,12 +8,13 @@ import java.util.List;
 
 /**
  * 商品三级分类
- * 
+ *
  * @author fengge
  * @email fengge@atguigu.com
- * @date 2020-05-18 22:04:16
+ * @date 2020-05-16 14:35:19
  */
 @Mapper
 public interface CategoryMapper extends BaseMapper<CategoryEntity> {
-    List<CategoryEntity> queryCategoriesByPid(Long pid);
+
+    List<CategoryEntity> queryCategoriesWithSubByPid(Long pid);
 }

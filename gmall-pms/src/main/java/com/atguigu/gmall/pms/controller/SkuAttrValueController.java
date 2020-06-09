@@ -2,6 +2,8 @@ package com.atguigu.gmall.pms.controller;
 
 import java.util.List;
 
+import com.atguigu.gmall.pms.vo.SaleAttrValueVo;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +26,7 @@ import com.atguigu.gmall.common.bean.PageParamVo;
  *
  * @author fengge
  * @email fengge@atguigu.com
- * @date 2020-05-18 22:04:16
+ * @date 2020-05-16 14:35:19
  */
 @Api(tags = "sku销售属性&值 管理")
 @RestController
@@ -34,10 +36,28 @@ public class SkuAttrValueController {
     @Autowired
     private SkuAttrValueService skuAttrValueService;
 
+    @GetMapping("sku/spu/{spuId}")
+    public ResponseVo<String> querySkuJsonsBySpuId(@PathVariable("spuId")Long spuId){
+        String skuJsons = this.skuAttrValueService.querySkuJsonsBySpuId(spuId);
+        return ResponseVo.ok(skuJsons);
+    }
+
+    @GetMapping("spu/{spuId}")
+    public ResponseVo<List<SaleAttrValueVo>> querySaleAttrValuesBySpuId(@PathVariable("spuId")Long spuId){
+        List<SaleAttrValueVo> saleAttrValueVos = this.skuAttrValueService.querySaleAttrValuesBySpuId(spuId);
+        return ResponseVo.ok(saleAttrValueVos);
+    }
+
+    @GetMapping("sku/sale/{skuId}")
+    public ResponseVo<List<SkuAttrValueEntity>> querySaleAttrValuesBySkuId(@PathVariable("skuId")Long skuId){
+        List<SkuAttrValueEntity> skuAttrValueEntities = this.skuAttrValueService.list(new QueryWrapper<SkuAttrValueEntity>().eq("sku_id", skuId));
+        return ResponseVo.ok(skuAttrValueEntities);
+    }
+
     @GetMapping("sku/{skuId}")
-    public ResponseVo<List<SkuAttrValueEntity>> selectSkuAttrValueBySkuId(@PathVariable("skuId") Long skuId){
-        List<SkuAttrValueEntity> skuattrvalues = skuAttrValueService.selectSkuAttrValueBySkuId(skuId);
-        return ResponseVo.ok(skuattrvalues);
+    public ResponseVo<List<SkuAttrValueEntity>> querySkuAttrValuesBySkuId(@PathVariable("skuId")Long skuId){
+        List<SkuAttrValueEntity> skuAttrValueEntities = this.skuAttrValueService.querySkuAttrValuesBySkuId(skuId);
+        return ResponseVo.ok(skuAttrValueEntities);
     }
 
     /**

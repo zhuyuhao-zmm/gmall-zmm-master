@@ -29,20 +29,19 @@ public class AttrServiceImpl extends ServiceImpl<AttrMapper, AttrEntity> impleme
     }
 
     @Override
-    public List<AttrEntity> queryAttrByCidOrTypeOrSearchType(Long cid, Integer type, Integer searchType) {
-        QueryWrapper<AttrEntity> wrapper = new QueryWrapper<AttrEntity>();
+    public List<AttrEntity> queryAttrsByCidOrTypeOrSearchType(Long cid, Integer type, Integer searchType) {
 
-        if (cid != 0){
-            wrapper.eq("category_id", cid);
-        }
-        if (type != null){
-            wrapper.eq("type",type);
+        QueryWrapper<AttrEntity> wrapper = new QueryWrapper<AttrEntity>().eq("category_id", cid);
+
+        if (type != null) {
+            wrapper.eq("type", type);
         }
 
-        if (searchType != null){
+        if (searchType != null) {
             wrapper.eq("search_type", searchType);
         }
-        return list(wrapper);
+
+        return this.list(wrapper);
     }
 
 }

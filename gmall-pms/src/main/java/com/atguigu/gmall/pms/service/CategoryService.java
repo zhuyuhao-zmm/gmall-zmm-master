@@ -13,14 +13,16 @@ import java.util.Map;
  *
  * @author fengge
  * @email fengge@atguigu.com
- * @date 2020-05-18 22:04:16
+ * @date 2020-05-16 14:35:19
  */
 public interface CategoryService extends IService<CategoryEntity> {
 
     PageResultVo queryPage(PageParamVo paramVo);
 
-    List<CategoryEntity> queryCategoryByPid(Long pid);
+    List<CategoryEntity> queryCategoriesByPid(Long pid);
 
-    List<CategoryEntity> queryCategoriesWithSub(Long pid);
+    List<CategoryEntity> queryCategoriesWithSubByPid(Long pid);
+
+    List<CategoryEntity> queryCategoriesByCid3(Long cid3);
 }
 

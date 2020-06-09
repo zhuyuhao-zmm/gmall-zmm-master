@@ -2,8 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.atguigu.gmall.pms.mapper.SpuAttrValueMapper">
 
-    <select id="querySpuAttrValueBySpuId" resultType="SpuAttrValueEntity">
-        SELECT a.* FROM pms_spu_attr_value a INNER JOIN pms_attr b on a.attr_id = b.id WHERE a.spu_id=#{spuId} AND b.search_type = 1
+    <select id="querySpuAttrValuesBySpuId" resultType="SpuAttrValueEntity">
+        select a.* from pms_spu_attr_value a INNER JOIN pms_attr b on a.attr_id=b.id where a.spu_id=#{spuId} and b.search_type=1;
     </select>
 
+    <select id="querySpuAttrValuesBySpuIdAndGId" resultType="SpuAttrValueEntity">
+        select b.* from pms_attr a INNER JOIN pms_spu_attr_value b on a.id=b.attr_id where b.spu_id=#{spuId} and a.group_id=#{groupId}
+    </select>
 </mapper>

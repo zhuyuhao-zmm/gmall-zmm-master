@@ -24,7 +24,7 @@ import com.atguigu.gmall.common.bean.PageParamVo;
  *
  * @author fengge
  * @email fengge@atguigu.com
- * @date 2020-05-18 22:04:16
+ * @date 2020-05-16 14:35:19
  */
 @Api(tags = "spu属性值 管理")
 @RestController
@@ -35,9 +35,9 @@ public class SpuAttrValueController {
     private SpuAttrValueService spuAttrValueService;
 
     @GetMapping("spu/{spuId}")
-    public ResponseVo<List<SpuAttrValueEntity>> querySpuAttrValueBySpuId(@PathVariable("spuId")Long spuId){
-        List<SpuAttrValueEntity> attrValueEntities = spuAttrValueService.querySpuAttrValueBySpuId(spuId);
-        return ResponseVo.ok(attrValueEntities);
+    public ResponseVo<List<SpuAttrValueEntity>> querySpuAttrValuesBySpuId(@PathVariable("spuId")Long spuId){
+        List<SpuAttrValueEntity> spuAttrValueEntities = this.spuAttrValueService.querySpuAttrValuesBySpuId(spuId);
+        return ResponseVo.ok(spuAttrValueEntities);
     }
 
     /**

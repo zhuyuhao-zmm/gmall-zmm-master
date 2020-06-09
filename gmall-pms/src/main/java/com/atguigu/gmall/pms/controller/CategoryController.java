@@ -24,7 +24,7 @@ import com.atguigu.gmall.common.bean.PageParamVo;
  *
  * @author fengge
  * @email fengge@atguigu.com
- * @date 2020-05-18 22:04:16
+ * @date 2020-05-16 14:35:19
  */
 @Api(tags = "商品三级分类 管理")
 @RestController
@@ -34,11 +34,22 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
+    @GetMapping("all/{cid3}")
+    public ResponseVo<List<CategoryEntity>> queryCategoriesByCid3(@PathVariable("cid3")Long cid3){
+        List<CategoryEntity> categoryEntities = this.categoryService.queryCategoriesByCid3(cid3);
+        return ResponseVo.ok(categoryEntities);
+    }
 
-    @GetMapping("subs/{pid}")
-    public ResponseVo<List<CategoryEntity>> queryCategoriesWithSub(@PathVariable("pid")Long pid){
-        List<CategoryEntity> categoryEntityList = this.categoryService.queryCategoriesWithSub(pid);
-        return ResponseVo.ok(categoryEntityList);
+    @GetMapping("parent/with/subs/{parentId}")
+    public ResponseVo<List<CategoryEntity>> queryCategoriesWithSubByPid(@PathVariable("parentId")Long pid){
+        List<CategoryEntity> categoryEntities = this.categoryService.queryCategoriesWithSubByPid(pid);
+        return ResponseVo.ok(categoryEntities);
+    }
+
+    @GetMapping("parent/{parentId}")
+    public ResponseVo<List<CategoryEntity>> queryCategoriesByPid(@PathVariable("parentId")Long pid){
+        List<CategoryEntity> categoryEntities = this.categoryService.queryCategoriesByPid(pid);
+        return ResponseVo.ok(categoryEntities);
     }
 
     /**
@@ -50,14 +61,6 @@ public class CategoryController {
         PageResultVo pageResultVo = categoryService.queryPage(paramVo);
 
         return ResponseVo.ok(pageResultVo);
-    }
-
-    @ApiOperation("分类树状图")
-
-    @GetMapping("parent/{parentId}")
-    public ResponseVo<List<CategoryEntity>> queryCategoryByPid(@PathVariable("parentId")Long Pid){
-        List<CategoryEntity> categories = categoryService.queryCategoryByPid(Pid);
-        return ResponseVo.ok(categories);
     }
 
 

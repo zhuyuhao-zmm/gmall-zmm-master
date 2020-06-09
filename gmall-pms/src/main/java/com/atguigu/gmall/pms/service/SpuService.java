@@ -6,6 +6,7 @@ import com.atguigu.gmall.common.bean.PageResultVo;
 import com.atguigu.gmall.common.bean.PageParamVo;
 import com.atguigu.gmall.pms.entity.SpuEntity;
 
+import java.io.FileNotFoundException;
 import java.util.Map;
 
 /**
@@ -13,14 +14,16 @@ import java.util.Map;
  *
  * @author fengge
  * @email fengge@atguigu.com
- * @date 2020-05-18 22:04:16
+ * @date 2020-05-16 14:35:19
  */
 public interface SpuService extends IService<SpuEntity> {
 
     PageResultVo queryPage(PageParamVo paramVo);
 
-    PageResultVo querySpuPageByCid(Long cid, PageParamVo pageParamVo);
+    PageResultVo querySpuPageByCid(Long categoryId, PageParamVo paramVo);
 
-    void bigSave(SpuVo spuVo);
+    void bigSave(SpuVo spuVo) throws FileNotFoundException;
+
+
 }
 

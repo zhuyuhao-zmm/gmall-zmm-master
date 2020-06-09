@@ -6,11 +6,11 @@ import com.aliyun.oss.common.utils.BinaryUtil;
 import com.aliyun.oss.model.MatchMode;
 import com.aliyun.oss.model.PolicyConditions;
 import com.atguigu.gmall.common.bean.ResponseVo;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.xml.crypto.Data;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedHashMap;
@@ -19,14 +19,14 @@ import java.util.Map;
 @RestController
 @RequestMapping("pms/oss")
 public class OssController {
+
     @GetMapping("policy")
     public ResponseVo<Object> policy(){
-        String accessId = "LTAI4GCcTcah84T4ygrgHi8Z"; // 请填写您的AccessKeyId。
-        String accessKey = "XpBtdMeinei3jMgbhmAst2d2M83eUg"; // 请填写您的AccessKeySecret。
+        String accessId = "LTAI4GB5Fdmk7GXFo6KEc3Lk"; // 请填写您的AccessKeyId。
+        String accessKey = "W2KFFRwsWyGQW1HEqUfBJ3cMmI4FH8"; // 请填写您的AccessKeySecret。
         String endpoint = "oss-cn-shanghai.aliyuncs.com"; // 请填写您的 endpoint。
-        String bucket = "zyh-gmall"; // 请填写您的 bucketname 。
+        String bucket = "ggmall"; // 请填写您的 bucketname 。
         String host = "https://" + bucket + "." + endpoint; // host的格式为 bucketname.endpoint
-        // callbackUrl为 上传回调服务器的URL，请将下面的IP和Port配置为您自己的真实信息。
         Date date = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String dir = simpleDateFormat.format(date); // 用户上传文件时指定的前缀。
@@ -55,14 +55,14 @@ public class OssController {
             respMap.put("host", host);
             respMap.put("expire", String.valueOf(expireEndTime / 1000));
             // respMap.put("expire", formatISO8601Date(expiration));
-            return ResponseVo.ok(respMap);
 
+            return ResponseVo.ok(respMap);
         } catch (Exception e) {
             // Assert.fail(e.getMessage());
             System.out.println(e.getMessage());
         } finally {
             ossClient.shutdown();
         }
-        return ResponseVo.fail("获取签名信息失败");
+        return ResponseVo.fail("获取签名信息失败！");
     }
 }

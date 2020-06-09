@@ -13,12 +13,12 @@ import java.util.Map;
  *
  * @author fengge
  * @email fengge@atguigu.com
- * @date 2020-05-18 22:04:16
+ * @date 2020-05-16 14:35:19
  */
 public interface AttrService extends IService<AttrEntity> {
 
     PageResultVo queryPage(PageParamVo paramVo);
 
-    List<AttrEntity> queryAttrByCidOrTypeOrSearchType(Long cid, Integer type, Integer searchType);
+    List<AttrEntity> queryAttrsByCidOrTypeOrSearchType(Long cid, Integer type, Integer searchType);
 }
 

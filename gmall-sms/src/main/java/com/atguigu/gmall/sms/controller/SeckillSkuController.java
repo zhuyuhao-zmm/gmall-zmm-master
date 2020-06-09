@@ -24,7 +24,7 @@ import com.atguigu.gmall.common.bean.PageParamVo;
  *
  * @author fengge
  * @email fengge@atguigu.com
- * @date 2020-05-18 22:43:50
+ * @date 2020-05-16 15:02:29
  */
 @Api(tags = "秒杀活动商品关联 管理")
 @RestController

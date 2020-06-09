@@ -2,7 +2,6 @@ package com.atguigu.gmall.pms.controller;
 
 import java.util.List;
 
-import com.atguigu.gmall.pms.service.impl.SpuServiceImpl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -26,7 +25,7 @@ import com.atguigu.gmall.common.bean.PageParamVo;
  *
  * @author fengge
  * @email fengge@atguigu.com
- * @date 2020-05-18 22:04:16
+ * @date 2020-05-16 14:35:19
  */
 @Api(tags = "商品属性 管理")
 @RestController
@@ -37,20 +36,17 @@ public class AttrController {
     private AttrService attrService;
 
     @GetMapping("category/{cid}")
-    public ResponseVo<List<AttrEntity>> queryAttrByCidOrTypeOrSearchType(@PathVariable("cid")Long cid,
-                                                                         @RequestParam(value = "type",required = false)Integer type,
-                                                                         @RequestParam(value = "searchType",required = false)Integer searchType)
-    {
-        List<AttrEntity> attrEntities = attrService.queryAttrByCidOrTypeOrSearchType(cid, type, searchType);
-
+    public ResponseVo<List<AttrEntity>> queryAttrsByCidOrTypeOrSearchType(@PathVariable("cid")Long cid,
+                                                                          @RequestParam(value = "type", required = false)Integer type,
+                                                                          @RequestParam(value = "searchType", required = false)Integer searchType){
+        List<AttrEntity> attrEntities = this.attrService.queryAttrsByCidOrTypeOrSearchType(cid, type, searchType);
         return ResponseVo.ok(attrEntities);
     }
 
-    //查询组下的规格参数
     @GetMapping("group/{gid}")
-    public ResponseVo<List<AttrEntity>> queryAttrByGid(@PathVariable("gid")Long gid){
-        List<AttrEntity> attrs = attrService.list(new QueryWrapper<AttrEntity>().eq("group_id", gid));
-        return ResponseVo.ok(attrs);
+    public ResponseVo<List<AttrEntity>> queryAttrsByGid(@PathVariable("gid")Long gid){
+        List<AttrEntity> attrEntities = this.attrService.list(new QueryWrapper<AttrEntity>().eq("group_id", gid));
+        return ResponseVo.ok(attrEntities);
     }
 
     /**
@@ -71,7 +67,7 @@ public class AttrController {
     @GetMapping("{id}")
     @ApiOperation("详情查询")
     public ResponseVo<AttrEntity> queryAttrById(@PathVariable("id") Long id){
-        AttrEntity attr = attrService.getById(id);
+		AttrEntity attr = attrService.getById(id);
 
         return ResponseVo.ok(attr);
     }
@@ -82,7 +78,7 @@ public class AttrController {
     @PostMapping
     @ApiOperation("保存")
     public ResponseVo<Object> save(@RequestBody AttrEntity attr){
-        attrService.save(attr);
+		attrService.save(attr);
 
         return ResponseVo.ok();
     }
@@ -93,7 +89,7 @@ public class AttrController {
     @PostMapping("/update")
     @ApiOperation("修改")
     public ResponseVo update(@RequestBody AttrEntity attr){
-        attrService.updateById(attr);
+		attrService.updateById(attr);
 
         return ResponseVo.ok();
     }
@@ -104,7 +100,7 @@ public class AttrController {
     @PostMapping("/delete")
     @ApiOperation("删除")
     public ResponseVo delete(@RequestBody List<Long> ids){
-        attrService.removeByIds(ids);
+		attrService.removeByIds(ids);
 
         return ResponseVo.ok();
     }

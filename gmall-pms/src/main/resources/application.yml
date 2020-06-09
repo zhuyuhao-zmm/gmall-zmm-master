@@ -28,7 +28,7 @@ spring:
   redis:
     host: 192.168.221.129
     port: 6379
- #feign熔断功能
+  #feign熔断功能
 feign:
   sentinel:
     enabled: true

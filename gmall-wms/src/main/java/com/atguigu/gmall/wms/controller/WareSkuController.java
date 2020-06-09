@@ -2,7 +2,6 @@ package com.atguigu.gmall.wms.controller;
 
 import java.util.List;
 
-import com.atguigu.gmall.wms.entity.WareSkuEntity;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -12,19 +11,23 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.atguigu.gmall.wms.entity.WareSkuEntity;
 import com.atguigu.gmall.wms.service.WareSkuService;
 import com.atguigu.gmall.common.bean.PageResultVo;
 import com.atguigu.gmall.common.bean.ResponseVo;
 import com.atguigu.gmall.common.bean.PageParamVo;
+
+import javax.xml.ws.Response;
 
 /**
  * 商品库存
  *
  * @author fengge
  * @email fengge@atguigu.com
- * @date 2020-05-21 23:11:31
+ * @date 2020-05-19 10:42:54
  */
 @Api(tags = "商品库存 管理")
 @RestController
@@ -35,9 +38,9 @@ public class WareSkuController {
     private WareSkuService wareSkuService;
 
     @GetMapping("sku/{skuId}")
-    public ResponseVo<List<WareSkuEntity>> queryWareskuBySkuId(@PathVariable("skuId")Long skuId){
-        List<WareSkuEntity> WareSkus = wareSkuService.list(new QueryWrapper<WareSkuEntity>().eq("sku_id", skuId));
-        return ResponseVo.ok(WareSkus);
+    public ResponseVo<List<WareSkuEntity>> queryWareSkusBySkuId(@PathVariable("skuId") Long skuId){
+        List<WareSkuEntity> wareSkuEntities = this.wareSkuService.list(new QueryWrapper<WareSkuEntity>().eq("sku_id", skuId));
+        return ResponseVo.ok(wareSkuEntities);
     }
 
     /**

@@ -13,12 +13,12 @@ import java.util.Map;
  *
  * @author fengge
  * @email fengge@atguigu.com
- * @date 2020-05-18 22:04:16
+ * @date 2020-05-16 14:35:19
  */
 public interface SpuAttrValueService extends IService<SpuAttrValueEntity> {
 
     PageResultVo queryPage(PageParamVo paramVo);
 
-    List<SpuAttrValueEntity> querySpuAttrValueBySpuId(Long spuId);
+    List<SpuAttrValueEntity> querySpuAttrValuesBySpuId(Long spuId);
 }
 
