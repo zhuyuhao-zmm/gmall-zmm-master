@@ -5,7 +5,6 @@ import com.atguigu.gmall.common.bean.ResponseVo;
 import com.atguigu.gmall.pms.entity.*;
 import com.atguigu.gmall.pms.vo.ItemGroupVo;
 import com.atguigu.gmall.pms.vo.SaleAttrValueVo;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -71,7 +70,7 @@ public interface GmallPmsApi {
      * @return
      */
     @GetMapping("pms/category/parent/{parentId}")
-    public ResponseVo<List<CategoryEntity>> queryCategoryByPid(@PathVariable("parentId")Long Pid);
+    public ResponseVo<List<CategoryEntity>> queryCategoriesByPid(@PathVariable("parentId")Long Pid);
 
 
     /**
@@ -80,7 +79,7 @@ public interface GmallPmsApi {
      * @return
      */
     @GetMapping("pms/category/subs/{pid}")
-    public ResponseVo<List<CategoryEntity>> queryCategoriesWithSub(@PathVariable("pid")Long pid);
+    public ResponseVo<List<CategoryEntity>> queryCategoriesWithSubByPid(@PathVariable("pid")Long pid);
 
     /**
      * 根据id查询sku信息
@@ -152,4 +151,12 @@ public interface GmallPmsApi {
             @RequestParam("skuId")Long skuId,
             @RequestParam("cid")Long cid
     );
+
+    /**
+     * 根据skuId查询当前sku的所有销售属性和值
+     * @param skuId
+     * @return
+     */
+    @GetMapping("pms/skuattrvalue/sku/sale/{skuId}")
+    public ResponseVo<List<SkuAttrValueEntity>> querySaleAttrValuesBySkuId(@PathVariable("skuId")Long skuId);
 }

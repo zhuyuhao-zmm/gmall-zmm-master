@@ -43,7 +43,7 @@ class GmallSearchApplicationTests {
 
     @Test
     public void importData(){
-        // 创建索引及映射
+//        // 创建索引及映射
         this.elasticsearchRestTemplate.createIndex(Goods.class);
         this.elasticsearchRestTemplate.putMapping(Goods.class);
 

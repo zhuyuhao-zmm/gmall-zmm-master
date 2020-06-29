@@ -14,15 +14,25 @@ spring:
     discovery-client-enabled: false
     sender:
       type: web
-
   sleuth:
     sampler:
       probability: 1
   elasticsearch:
     rest:
-      uris: 192.168.221.129:9200
+      uris: 192.168.181.128:9200
   thymeleaf:
     cache: false
+  rabbitmq:
+    host: 192.168.181.128
+    virtual-host: /zhuyuhao
+    username: zhuyuhao
+    password: yomikiss
+    listener:
+      simple:
+        acknowledge-mode: manual
+        prefetch: 1
+  jackson:
+    default-property-inclusion: non_null
 feign:
   sentinel:
     enabled: true

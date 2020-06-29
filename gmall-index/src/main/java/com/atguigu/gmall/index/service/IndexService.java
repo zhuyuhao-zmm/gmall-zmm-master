@@ -11,16 +11,10 @@ import org.redisson.api.RLock;
 import org.redisson.api.RReadWriteLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.script.DefaultRedisScript;
-import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 
-import java.sql.Time;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -42,13 +36,13 @@ public class IndexService {
     private static final String KEY_PREFIX = "index:cats:";
 
     public List<CategoryEntity> queryLvl1Categories() {
-        ResponseVo<List<CategoryEntity>> listResponseVo = this.pmsClient.queryCategoryByPid(0L);
+        ResponseVo<List<CategoryEntity>> listResponseVo = this.pmsClient.queryCategoriesByPid(0l);
         return listResponseVo.getData();
     }
 
-    @GmallCache(prefix = KEY_PREFIX, lock = "lock", timeout = 129600L, random = 10080)
+    @GmallCache(prefix = KEY_PREFIX, lock = "lock", timeout = 129600l, random = 10080)
     public List<CategoryEntity> queryLvl2CategoriesWithSubs(Long pid) {
-        ResponseVo<List<CategoryEntity>> listResponseVo = this.pmsClient.queryCategoriesWithSub(pid);
+        ResponseVo<List<CategoryEntity>> listResponseVo = this.pmsClient.queryCategoriesWithSubByPid(pid);
         List<CategoryEntity> categoryEntities = listResponseVo.getData();
 
         return categoryEntities;
@@ -73,7 +67,7 @@ public class IndexService {
         }
 
         // 2.没有，则查询数据库
-        ResponseVo<List<CategoryEntity>> listResponseVo = this.pmsClient.queryCategoriesWithSub(pid);
+        ResponseVo<List<CategoryEntity>> listResponseVo = this.pmsClient.queryCategoriesWithSubByPid(pid);
         List<CategoryEntity> categoryEntities = listResponseVo.getData();
         // 放入缓存，
         // 1.为避免缓存穿透，这里不要判断数据是否为空（数据即使为空也放入缓存）

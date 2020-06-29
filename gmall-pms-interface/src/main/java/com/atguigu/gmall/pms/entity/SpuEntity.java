@@ -49,4 +49,5 @@ public class SpuEntity implements Serializable {
 	 */
 	private Date updateTime;
 
+
 }

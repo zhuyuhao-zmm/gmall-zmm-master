@@ -115,7 +115,7 @@ public class ItemService {
 
         // 当前sku的销售属性
         CompletableFuture<Void> saleCompletableFuture = CompletableFuture.runAsync(() -> {
-            ResponseVo<List<SkuAttrValueEntity>> skuAttrValueResponseVo = this.pmsClient.selectSkuAttrValueBySkuId(skuId);
+            ResponseVo<List<SkuAttrValueEntity>> skuAttrValueResponseVo = this.pmsClient.querySaleAttrValuesBySkuId(skuId);
             // [{attrId: 8, attrName: 颜色， attrValue: 黑色}， {attrId: 9, attrName: 内存， attrValue: 12G}， {attrId: 10, attrName: 存储， attrValue: 128G}]
             List<SkuAttrValueEntity> skuAttrValueEntities = skuAttrValueResponseVo.getData();
             if (!CollectionUtils.isEmpty(skuAttrValueEntities)) {

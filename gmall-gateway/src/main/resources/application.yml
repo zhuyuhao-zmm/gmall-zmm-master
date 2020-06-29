@@ -37,14 +37,24 @@ spring:
           uri: lb://index-service
           predicates:
             - Path=/index/**
-        - id: item-route1
+        - id: item-route
           uri: lb://item-service
           predicates:
-            - Path=/item/**
-        - id: item-route2
-          uri: lb://item-service
+            - Host=item.gmall.com
+        - id: auth-route1
+          uri: lb://auth-service
           predicates:
-            - Host=item.gamll.com
+            - Host=sso.gmall.com
+        - id: cart-route1
+          uri: lb://cart-service
+          predicates:
+            - Host=cart.gmall.com
+
+      x-forwarded:
+        host-enabled: true
     nacos:
       discovery:
         server-addr: localhost:8848
+jwt:
+  pubKeyPath: D:\project\6.9\rsa\rsa.pub
+  cookieName: GMALL-TOKEN
